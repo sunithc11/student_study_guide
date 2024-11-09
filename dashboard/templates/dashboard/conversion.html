@@ -1,0 +1,56 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %}
+<div class="container text-center">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <legend class="border-bottom mb-4"></legend>
+            {{ form }}
+            <button class="btn btn-outline-info" type="submit">Select</button>
+        </div>
+
+        {% if measurement_type %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"></legend>
+            {% if measurement_type == 'length' %}
+            <div class="row">
+                <div class="col-md-4">Enter Input:
+                    {{ m_form.input }}
+                </div>
+                <div class="col-md-4">Choose:
+                    {{ m_form.measure1 }}
+                </div>
+                <div class="col-md-4">Choose:
+                    {{ m_form.measure2 }}
+                </div>
+            </div>
+            {% elif measurement_type == 'mass' %}
+            <div class="row">
+                <div class="col-md-4">Enter Input:
+                    {{ m_form.input }}
+                </div>
+                <div class="col-md-4">Choose:
+                    {{ m_form.measure1 }}
+                </div>
+                <div class="col-md-4">Choose:
+                    {{ m_form.measure2 }}
+                </div>
+            </div>
+            {% endif %}
+        </fieldset>
+
+        <fieldset class="form-group">
+            {% if answer %}
+                <legend class="border-bottom mb-4"></legend>
+                <div class="answer">{{ answer }}</div>
+            {% endif %}
+        </fieldset>
+
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Convert</button>
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock content %}

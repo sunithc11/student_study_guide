@@ -1,0 +1,12 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="border-top pt-3 text-center">
+  <h2>You are logged out successfully!!</h2>
+
+  <small class="text-muted">
+    <a class="btn btn-danger mr-5" href="{% url 'login' %}">Log In</a>
+    <a class="btn btn-danger" href="{% url 'register' %}">Register</a>
+  </small>
+</div>
+{% endblock content %}

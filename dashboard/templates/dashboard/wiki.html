@@ -1,0 +1,45 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="text-center container">
+    <h2>Search articles in Wikipedia</h2>
+    <p>Enter a search query to obtain results (without spaces).</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-danger" type="submit" value="Submit">
+    </form><br>
+
+    <div class="container">
+        <div class="content-section p-0 mt-5">
+            {% if error_message %}
+                <p style="color:red;">{{ error_message }}</p>
+            {% endif %}
+            {% if options %}
+                <h3>Possible matches:</h3>
+                <ul>
+                    {% for option in options %}
+                        <li><a href="{% url 'wiki' %}?text={{ option }}">{{ option }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if title %}
+                <a href="{{ link }}" class="p-0 m-0" target="_blank">
+                    <div class="custom-header">
+                        <h2>{{ title }}</h2>
+                        <h6>{{ link }}</h6>
+                    </div>
+                </a>
+
+                <hr class="p-0 m-0">
+                <p class="description m-5 p-5">{{ details }}</p>
+                <hr>
+            {% endif %}
+        </div>
+    </div>
+
+</section>
+
+{% endblock content %}
